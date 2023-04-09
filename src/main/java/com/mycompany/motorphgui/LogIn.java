@@ -27,6 +27,7 @@ public class LogIn implements ActionListener{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setSize(200, 300);
+       
         
         
         icon = new ImageIcon("logo.png");
@@ -35,6 +36,7 @@ public class LogIn implements ActionListener{
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
         frame.add(panel);
+        panel.setBackground(Color.pink);
         
         
         imagelbl = new JLabel();
@@ -68,6 +70,8 @@ public class LogIn implements ActionListener{
    
     public void actionPerformed(ActionEvent e) {
         if(usertf.getText().equals("Cha") && pwtf.getText().equals("1234")){
+            new Options(); 
+            frame.dispose();
             
         }
         else{
