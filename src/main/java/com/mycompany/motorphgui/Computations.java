@@ -4,6 +4,7 @@
  */
 package com.mycompany.motorphgui;
 
+import static java.lang.String.format;
 import java.text.ParseException;
 
 
@@ -142,24 +143,24 @@ public class Computations {
         "=================================================================================================="+
         "\n                                                               EARNINGS\n"+
         "(Note: Salary Earned is temporarily based on hourly rate)\n\n"+
-        "Salary Earned for the Period: "+computegs(n,hw)+"\n\n"+
+        "Salary Earned for the Period: "+format("%.2f",computegs(n,hw))+"\n\n"+
         
         "Benefits\n"+
         "Rice Subsidy:\t        "+data.getrice()[n]+"\n"+
         "Phone Allowance:  "+data.getphone()[n]+"\n"+ 
         "Clothing Allowance:"+data.getcloth()[n]+"\n\n"+
-        "Total Benefits: "+computeTotalBenefits(n)+"\n"+
+        "Gross Salary: "+format("%.2f",computegs(n,hw)+computeTotalBenefits(n))+"\n"+
         "==================================================================================================\n"+        
         "                                                                 DEDUCTIONS\n"+
         "Government Deductions\n"+
-        "SSS:\t"+computesss(n)+"\n"+
-        "Philhealth:\t"+computeph(n)+"\n"+
-        "Pag-IBIG:\t"+computepg(n)+"\n\n"+
-        "Taxable Income: "+computetaxable(n)+"\n"+
-        "Withholding Tax: "+computetax(n)+"\n\n"+
-        "Total Deductions: "+computeTotalDeduction(n)+"\n"+
+        "SSS:\t"+format("%.2f",computesss(n))+"\n"+
+        "Philhealth:\t"+format("%.2f",computeph(n))+"\n"+
+        "Pag-IBIG:\t"+format("%.2f",computepg(n))+"\n\n"+
+        "Taxable Income: "+format("%.2f",computetaxable(n))+"\n"+
+        "Withholding Tax: "+format("%.2f",computetax(n))+"\n\n"+
+        "Total Deductions: "+format("%.2f",computeTotalDeduction(n))+"\n"+
         "==================================================================================================\n"+
-        "Net Salary:\t"+computenet(n,hw)+"\n"+
+        "Net Salary:\t"+format("%.2f",computenet(n,hw))+"\n"+
         "====================================================================================================";
         
         return s;
