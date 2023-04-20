@@ -171,10 +171,10 @@ public class Payroll implements ActionListener {
                 empnumtf.setText(null);
             }
             
-            sdate = (String) monthcb.getSelectedItem()+"/"+(String) daycb.getSelectedItem()+"/"+
-                       (String) yearcb.getSelectedItem();
-            edate = (String) monthcb.getSelectedItem()+"/"+(String) day2cb.getSelectedItem()+"/"+
-                       (String) year2cb.getSelectedItem();
+            sdate =  monthcb.getSelectedItem()+"/"+daycb.getSelectedItem()+"/"+
+                       yearcb.getSelectedItem();
+            edate = monthcb.getSelectedItem()+"/"+day2cb.getSelectedItem()+"/"+
+                        year2cb.getSelectedItem();
   
             try{
                 float h = attend.computeHours(n, sdate, edate);

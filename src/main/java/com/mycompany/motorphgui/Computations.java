@@ -14,8 +14,7 @@ import java.text.ParseException;
  */
 public class Computations {
     Data data = new Data();
-           
-         
+  
     
     public double computesss(int n){
         

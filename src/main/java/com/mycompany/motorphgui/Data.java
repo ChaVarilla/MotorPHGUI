@@ -9,9 +9,11 @@ package com.mycompany.motorphgui;
  * @author Cha
  */
 public class Data {
+    
+    
      String[] header = {"Employee #:\t\t","Last Name:\t\t","First Name:\t\t","Birthday:\t\t","Address:\t\t","Phone Number:\t",
                            "SSS #:\t\t","Philhealth #:\t\t","TIN #:\t\t","Pag-ibig #:\t\t","Status:\t\t","Position:\t\t",
-                           "Immediate Supervisor:\t","Basic Salary:\t\t","Rice Subsidy:\t\t","Phone Allowance:\t",
+                           "Immediate Supervisor:","Basic Salary:\t\t","Rice Subsidy:\t\t","Phone Allowance:\t",
                            "Clothing Allowance:\t", "Semi-monthly Rate:\t","Hourly Rate:\t\t"};
         //Employee Number array for easy indexing 
         //Data type as int so it can be used for referencing
@@ -173,5 +175,8 @@ public class Data {
         return cloth;
     }
     
+    
+    
+   
     
 }

@@ -18,8 +18,9 @@ public class Options implements ActionListener {
     
     
      JFrame frame;
-     JButton infobtn,payrollbtn,exitbtn;
+     JButton infobtn,payrollbtn,viewAllbtn,exitbtn;
      JPanel panel;
+     
      
      
     
@@ -28,7 +29,7 @@ public class Options implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLayout(null);
-        frame.setSize(200, 300);
+        frame.setSize(200, 335);
         
         panel= new JPanel();
         panel.setLayout(null);
@@ -36,6 +37,7 @@ public class Options implements ActionListener {
         panel.setBackground(Color.pink);
         frame.add(panel);
        
+        
         
         infobtn = new JButton("Employee Information");
         infobtn.setBounds(10, 30, 170, 40);
@@ -48,8 +50,15 @@ public class Options implements ActionListener {
         panel.add(payrollbtn);
         payrollbtn.addActionListener(this);
         
+        viewAllbtn = new JButton("View All");
+        viewAllbtn.setBounds(10, 170, 170, 40);
+        panel.add(viewAllbtn);
+        viewAllbtn.addActionListener(this);
+        
+        
+        
         exitbtn =new JButton("Exit");
-        exitbtn.setBounds(10, 170, 170, 40);
+        exitbtn.setBounds(10, 240, 170, 40);
         panel.add(exitbtn);
         exitbtn.addActionListener(this);
  
@@ -69,6 +78,11 @@ public class Options implements ActionListener {
         
         else if(e.getSource()==payrollbtn){
             new Payroll();
+            frame.dispose();
+        }
+        
+        else if(e.getSource()==viewAllbtn){
+            new ViewAllFrame();
             frame.dispose();
         }
         

@@ -10,10 +10,16 @@ package com.mycompany.motorphgui;
  * @author Cha
  */
 public class MotorPHGUI {
+   
 
     public static void main(String[] args) {
         //new LogIn();
-        new LogIn();
+        //new Options();
+        new ViewAllFrame();
+        //new EmployeeInfo();
+      
+        //new ViewMoreFrame();
+        
         
     }
 }
