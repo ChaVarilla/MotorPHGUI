@@ -13,9 +13,9 @@ public class MotorPHGUI {
    
 
     public static void main(String[] args) {
-        //new LogIn();
+        new LogIn();
         //new Options();
-        new ViewAllFrame();
+        //new ViewAllFrame();
         //new EmployeeInfo();
       
         //new ViewMoreFrame();
