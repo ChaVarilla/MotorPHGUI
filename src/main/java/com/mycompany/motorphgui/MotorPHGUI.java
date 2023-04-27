@@ -15,12 +15,13 @@ public class MotorPHGUI {
    
 
     public static void main(String[] args) throws IOException {
-        new LogIn();
+        //new LogIn();
         //new Options();
         //new ViewAllFrame();
         //new EmployeeInfo();
         //new ViewMoreFrame();
         //new UpdateFrame();
+        new LeaveApplicationFrame();
         
         
     }
