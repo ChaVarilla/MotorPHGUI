@@ -6,9 +6,19 @@ package com.mycompany.motorphgui;
 
 
 
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import static java.lang.String.format;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -26,34 +36,45 @@ public class ViewAllFrame implements ActionListener {
     String[] collbl;
     JScrollPane scrollpane;
     Object rowdata[][];
-    JButton vmbtn,returnbtn;
+    JButton vmbtn,returnbtn, deletebtn;
     JComboBox year1cb,month1cb,day1cb,year2cb,month2cb,day2cb;
     int selectedRow;
+    Object selectedEmpnum;
     JLabel selectRowlbl, selectdatelbl, startlbl,endlbl,yr1lbl,m1lbl,d1lbl,yr2lbl,m2lbl,d2lbl;
     
     Data data=new Data();
     Attendance attend = new Attendance();
     Computations compute = new Computations();
     
-    Object[][] getRowData(){
+    Object[][] getRowData() throws FileNotFoundException, IOException{
         rowdata = new Object[25][7];
+        
+        CSVReader csvreader = new CSVReader(new FileReader("MotorPH Employee Data.csv"));
+        
+        
+        String[] line;
+        int i=0;
+        while((line=csvreader.readNext())!=null){
+                
 
-        for(int i =0; i<25; i++){
-            rowdata[i][0] = data.getempNum()[i];
-            rowdata[i][1] = data.getlastName()[i];
-            rowdata[i][2] = data.getfirstName()[i];
-            rowdata[i][3] = data.getsssNum()[i];
-            rowdata[i][4] = data.getphNum()[i];
-            rowdata[i][5] = data.gettinNum()[i];
-            rowdata[i][6] = data.getpgbNum()[i];
-
+                rowdata[i][0] = line[0];
+                rowdata[i][1] = line[1];
+                rowdata[i][2] = line[2];
+                rowdata[i][3] = line[6];
+                rowdata[i][4] = line[7];
+                rowdata[i][5] = line[8];
+                rowdata[i][6] = line[9];
+                i++;
+            
         }
+        csvreader.close();
         return rowdata;
+        
     }
-    
+   
    
     
-    ViewAllFrame(){
+    ViewAllFrame() throws IOException{
         
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -79,6 +100,11 @@ public class ViewAllFrame implements ActionListener {
         vmbtn.setBounds(10, 10, 180, 30);
         panel2.add(vmbtn);
         vmbtn.addActionListener(this);
+      
+        deletebtn = new JButton("Delete Row");
+        deletebtn.setBounds(10, 50, 180, 30);
+        panel2.add(deletebtn);
+        deletebtn.addActionListener(this);
         
         returnbtn = new JButton("Return to Options");
         returnbtn.setBounds(625,10,150,30);
@@ -194,6 +220,7 @@ public class ViewAllFrame implements ActionListener {
                               
                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
                selectedRow=lsm.getMinSelectionIndex(); 
+               selectedEmpnum=table.getValueAt(selectedRow, 0);
             }
         });
     }
@@ -207,75 +234,139 @@ public class ViewAllFrame implements ActionListener {
                 
             }
             else if(!table.getSelectionModel().isSelectionEmpty()){
-                int n = selectedRow;
-                ViewMoreFrame vm =new ViewMoreFrame();
                 
-                vm.enumtf.setText(String.valueOf(data.getempNum()[n]));
-                vm.lnametf.setText(data.getlastName()[n]);
-                vm.fnametf.setText(data.getfirstName()[n]);
-                vm.bdaytf.setText(data.getbirthday()[n]);
-                vm.addtf.setText(data.getaddress()[n]);
-                vm.phonenumtf.setText(data.getphoneNum()[n]);
-                vm.sssnumtf.setText(data.getsssNum()[n]);
-                vm.phnumtf.setText(data.getphNum()[n]);
-                vm.tinnumtf.setText(data.gettinNum()[n]);
-                vm.pgnumtf.setText(data.getpgbNum()[n]);
-                vm.statustf.setText(data.getstatus()[n]);
-                vm.postf.setText(data.getposition()[n]);
-                vm.suptf.setText(data.getsup()[n]);
-                vm.basictf.setText(String.valueOf(format("%.2f",data.getsal()[n])));
-                vm.ricetf.setText(String.valueOf(data.getrice()[n]));
-                vm.phonetf.setText(String.valueOf(data.getphone()[n]));
-                vm.clothtf.setText(String.valueOf(data.getcloth()[n]));
-                vm.semratetf.setText(String.valueOf(format("%.2f",data.getsal()[n]/2)));
-                vm.hratetf.setText(String.valueOf(format("%.2f",data.getsal()[n]/(21*8))));
+                String m = String.valueOf(selectedEmpnum);
+                int n = Integer.parseInt(m)-10001;
+                ViewMoreFrame vm =new ViewMoreFrame();
+                frame.dispose();
+                
+                try {
+                    CSVReader csvreader = new CSVReader(new FileReader("MotorPH Employee Data.csv"));
+                    String[] line;
+                    
+                    while((line=csvreader.readNext())!=null){
+                        if(m.equals(line[0])){
+                            vm.enumtf.setText(line[0]);
+                            vm.lnametf.setText(line[1]);
+                            vm.fnametf.setText(line[2]);
+                            vm.bdaytf.setText(line[3]);
+                            vm.addtf.setText(line[4]);
+                            vm.phonenumtf.setText(line[5]);
+                            vm.sssnumtf.setText(line[6]);
+                            vm.phnumtf.setText(line[7]);
+                            vm.tinnumtf.setText(line[8]);
+                            vm.pgnumtf.setText(line[9]);
+                            vm.statustf.setText(line[10]);
+                            vm.postf.setText(line[11]);
+                            vm.suptf.setText(line[12]);
+                            vm.basictf.setText(line[13]);
+                            vm.ricetf.setText(line[14]);
+                            vm.phonetf.setText(line[15]);
+                            vm.clothtf.setText(line[16]);
+                            vm.semratetf.setText(String.valueOf(format("%.2f",Float.parseFloat(line[13])/2)));
+                            vm.hratetf.setText(String.valueOf(format("%.2f",Float.parseFloat(line[13])/(21*8))));
+                            csvreader.close();
+     
+                        }
+                    }
+  
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(ViewAllFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(ViewAllFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 String sdate = month1cb.getSelectedItem()+"/"+day1cb.getSelectedItem()+"/"+
                                year1cb.getSelectedItem();
                 String edate = month2cb.getSelectedItem()+"/"+day2cb.getSelectedItem()+"/"+
                                year2cb.getSelectedItem();
                 vm.salperiodtf.setText(sdate+" to "+edate);
-            try{
+
+                try{
+                    CSVReader csvreader = new CSVReader(new FileReader("MotorPH Employee Data.csv"));
+                    String[] line;
+
+                    while((line=csvreader.readNext())!=null){
+                        if(m.equals(line[0])){
+
+                            float h = attend.computeHours(n, sdate, edate);
+
+                            vm.salearnedtf.setText(String.valueOf(format("%.2f",compute.computegs(n, h))));
+                            vm.rice1tf.setText(line[14]);
+                            vm.phone1tf.setText(line[15]);
+                            vm.cloth1tf.setText(line[16]);
+                            vm.grosstf.setText(String.valueOf(format("%.2f",compute.computegs(n, h))));          
+                            vm.sssdeducttf.setText(String.valueOf(format("%.2f",compute.computesss(n))));
+                            vm.phdeducttf.setText(String.valueOf(format("%.2f",compute.computeph(n))));
+                            vm.pgdeducttf.setText(String.valueOf(format("%.2f",compute.computepg(n))));
+                            vm.taxdeducttf.setText(String.valueOf(format("%.2f",compute.computetax(n))));
+                            vm.totaldeducttf.setText(String.valueOf(format("%.2f",compute.computeTotalDeduction(n))));
+                            vm.nettf.setText(String.valueOf(format("%.2f",compute.computenet(n, h))));
+                            
+                            break;
+                        }
+                    }
                 
-                float h = attend.computeHours(n, sdate, edate);
-                
-                vm.salearnedtf.setText(String.valueOf(format("%.2f",(data.getsal()[n]/(21*8))*h)));
-                vm.rice1tf.setText(String.valueOf(data.getrice()[n]));
-                vm.phone1tf.setText(String.valueOf(data.getrice()[n]));
-                vm.cloth1tf.setText(String.valueOf(data.getcloth()[n]));
-                vm.grosstf.setText(String.valueOf(format("%.2f",compute.computegs(n, h))));
-                
-                vm.sssdeducttf.setText(String.valueOf(format("%.2f",compute.computesss(n))));
-                vm.sssdeducttf.setText(String.valueOf(format("%.2f",compute.computesss(n))));
-                vm.phdeducttf.setText(String.valueOf(format("%.2f",compute.computeph(n))));
-                vm.pgdeducttf.setText(String.valueOf(format("%.2f",compute.computepg(n))));
-                vm.taxdeducttf.setText(String.valueOf(format("%.2f",compute.computetax(n))));
-                vm.totaldeducttf.setText(String.valueOf(format("%.2f",compute.computeTotalDeduction(n))));
-            
-                vm.nettf.setText(String.valueOf(format("%.2f",compute.computenet(n, h))));
-            }
-            catch(Exception e2){
-                JOptionPane.showMessageDialog(null, "Date is invalid. Try Again.", "", JOptionPane.ERROR_MESSAGE);
-                month1cb.setSelectedItem(0);
-                day1cb.setSelectedIndex(0);
-                year1cb.setSelectedIndex(0);
-                month1cb.setSelectedIndex(0);
-                day2cb.setSelectedIndex(0);
-                year2cb.setSelectedIndex(0);
-                
-            }
        
-                frame.dispose();
-            } 
+               
+                }   catch (FileNotFoundException ex) { 
+                        Logger.getLogger(ViewAllFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IOException ex) {
+                        Logger.getLogger(ViewAllFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ParseException ex) {  
+                        JOptionPane.showMessageDialog(null, "Date is invalid. Try Again.", "", JOptionPane.ERROR_MESSAGE);
+                        month1cb.setSelectedItem(0);
+                        day1cb.setSelectedIndex(0);
+                        year1cb.setSelectedIndex(0);
+                        month1cb.setSelectedIndex(0);
+                        day2cb.setSelectedIndex(0);
+                        year2cb.setSelectedIndex(0);
+                        Logger.getLogger(ViewAllFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+            }
+        }
+        
+       
+        else if(e.getSource()==returnbtn) {
+            new Options();
+            frame.dispose();
             
         }
-        else if(e.getSource()==returnbtn) {
+        
+        else if(e.getSource()==deletebtn){
+            
+            String empNum=String.valueOf(selectedEmpnum) ;
+            
+            
+            String csvfile = "MotorPH Employee Data.csv";
+            
+            try {
+                CSVReader csvreader = new CSVReader(new FileReader(csvfile));
+                CSVWriter csvwriter = new CSVWriter(new FileWriter(csvfile+".tmp"));
+                
+                String[] line;
+                while((line =csvreader.readNext())!=null){
+                    if(line[0].equals(empNum)){                  
+                        continue;
+                    }
+                    csvwriter.writeNext(line);
+                }
+                csvreader.close();
+                csvwriter.close();
+                
+                new File(csvfile).delete();
+                new File(csvfile+".tmp").renameTo(new File(csvfile));
+                
+                JOptionPane.showMessageDialog(null, "Record Deleted.");
                 new Options();
                 frame.dispose();
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ViewAllFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(ViewAllFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-    }
-    
-   
+    }   
 }
-
 

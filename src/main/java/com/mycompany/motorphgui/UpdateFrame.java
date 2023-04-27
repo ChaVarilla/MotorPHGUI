@@ -4,69 +4,68 @@
  */
 package com.mycompany.motorphgui;
 
-
-
+import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Cha
  */
-public class ViewMoreFrame implements ActionListener {
+public class UpdateFrame implements ActionListener{
     JFrame frame;
     JPanel panel1,panel2;
-    JButton updatebtn,returnbtn;
+    JButton savebtn,returnbtn;
     
     
-    JLabel paylbl,enumlbl,lnamelbl,fnamelbl,bdaylbl,addlbl,phonenumlbl,sssnumlbl,phnumlbl,
+    JLabel enumlbl,lnamelbl,fnamelbl,bdaylbl,addlbl,phonenumlbl,sssnumlbl,phnumlbl,
            tinnumlbl,pgnumlbl,statuslbl,poslbl,suplbl,basiclbl,ricelbl,phonelbl,clothlbl,semratelbl,
-           hratelbl,earningslbl, salperiodlbl,salearnedlbl,rice1lbl,phone1lbl,cloth1lbl,grosslbl,
-           deductionslbl, sssdeductlbl,phdeductlbl,pgdeductlbl,taxdeductlbl,totaldeductlbl,netlbl;
+           hratelbl;
    
     JTextField enumtf,lnametf,fnametf,bdaytf,addtf,phonenumtf,sssnumtf,phnumtf,
            tinnumtf,pgnumtf,statustf,postf,suptf,basictf,ricetf,phonetf,clothtf,semratetf,
-           hratetf,salperiodtf,salearnedtf,rice1tf,phone1tf,cloth1tf,grosstf,
-           sssdeducttf,phdeducttf,pgdeducttf,taxdeducttf,totaldeducttf,nettf;
+           hratetf;
     
-    
-  
-    
-    ViewMoreFrame(){
-              
+    UpdateFrame(){
+        
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(520, 600);
         frame.setResizable(false);
         frame.setLayout(null);
         
         
         panel1 = new JPanel();
         panel1.setLayout(null);
-        panel1.setBounds(0, 0, 500, 600);
+        panel1.setBounds(0, 0, 520, 600);
         frame.add(panel1);
         
-        
-        panel2 = new JPanel();
-        panel2.setLayout(null);
-        panel2.setBounds(500, 0, 300, 600);
-        frame.add(panel2);
-        
-        updatebtn = new JButton("Update");
-        updatebtn.setBounds(10, 10, 150, 30);
-        panel1.add(updatebtn);
-        updatebtn.addActionListener(this);
-        
-       
+        savebtn = new JButton("Save Changes");
+        savebtn.setBounds(10,10,150,30);
+        panel1.add(savebtn);
+        savebtn.addActionListener(this);
         
         returnbtn = new JButton("Return to Options");
-        returnbtn.setBounds(125, 10, 150, 30);
-        panel2.add(returnbtn);
+        returnbtn.setBounds(345,10,150,30);
+        panel1.add(returnbtn);
         returnbtn.addActionListener(this);
-
         
+        
+         
         enumlbl = new JLabel("Employee Number:");
         enumlbl.setBounds(10,75 , 120, 20);
         panel1.add(enumlbl);
@@ -220,137 +219,93 @@ public class ViewMoreFrame implements ActionListener {
         hratetf = new JTextField();
         hratetf.setBounds(130,525 , 150, 20);
         panel1.add(hratetf);
-        
-        paylbl = new JLabel("Payroll Details");
-        paylbl.setBounds(10, 75, 150, 20);
-        panel2.add(paylbl);
-        
-        earningslbl = new JLabel("Earnings:");
-        earningslbl.setBounds(10, 115, 80, 20);
-        panel2.add(earningslbl);
-               
-        salperiodlbl = new JLabel("Salary Period:");
-        salperiodlbl.setBounds(10, 140, 120, 20);
-        panel2.add(salperiodlbl);
-        
-        salearnedlbl = new JLabel("Salary Earned:");
-        salearnedlbl.setBounds(10, 165, 120, 20);
-        panel2.add(salearnedlbl);
-        
-        rice1lbl = new JLabel("Rice Allowance:");
-        rice1lbl.setBounds(10, 190, 120, 20);
-        panel2.add(rice1lbl);
-        
-        phone1lbl = new JLabel("Phone Allowance:");
-        phone1lbl.setBounds(10, 215, 120, 20);
-        panel2.add(phone1lbl);
-        
-        cloth1lbl = new JLabel("Clothing Allowance:");
-        cloth1lbl.setBounds(10, 240, 120, 20);
-        panel2.add(cloth1lbl);        
-       
-        grosslbl = new JLabel("Gross Salary:");
-        grosslbl.setBounds(10, 265, 120, 20);
-        panel2.add(grosslbl);  
-        
-        deductionslbl = new JLabel("Deductions:");
-        deductionslbl.setBounds(10, 315, 120, 20);
-        panel2.add(deductionslbl);
-        
-        sssdeductlbl = new JLabel("SSS:");
-        sssdeductlbl.setBounds(10, 340, 120, 20);
-        panel2.add(sssdeductlbl);
-        
-        phdeductlbl = new JLabel("Philhealth:");
-        phdeductlbl.setBounds(10, 365, 120, 20);
-        panel2.add(phdeductlbl);
-        
-        pgdeductlbl = new JLabel("PAGIBIG:");
-        pgdeductlbl.setBounds(10, 390, 120, 20);
-        panel2.add(pgdeductlbl);
-   
-        
-        taxdeductlbl = new JLabel("Witholding Tax:");
-        taxdeductlbl.setBounds(10, 415, 120, 20);
-        panel2.add(taxdeductlbl);
-        
-        totaldeductlbl = new JLabel("Total Deductions:");
-        totaldeductlbl.setBounds(10, 440, 120, 20);
-        panel2.add(totaldeductlbl);
-       
-        netlbl = new JLabel("Net Salary:");
-        netlbl.setBounds(10, 490, 120, 20);
-        panel2.add(netlbl);
-        
-        salperiodtf = new JTextField();
-        salperiodtf.setBounds(120, 140, 150, 20);
-        panel2.add(salperiodtf);
-        
-        salearnedtf = new JTextField();
-        salearnedtf.setBounds(150, 165, 120, 20);
-        panel2.add(salearnedtf);
-        
-              
-        rice1tf = new JTextField();
-        rice1tf.setBounds(150, 190, 120, 20);
-        panel2.add(rice1tf);
-        
-        phone1tf = new JTextField();
-        phone1tf.setBounds(150, 215, 120, 20);
-        panel2.add(phone1tf);
-        
-        cloth1tf = new JTextField();
-        cloth1tf.setBounds(150, 240, 120, 20);
-        panel2.add(cloth1tf);
-        
-        grosstf = new JTextField();
-        grosstf.setBounds(150, 265, 120, 20);
-        panel2.add(grosstf);
-        
-        sssdeducttf = new JTextField();
-        sssdeducttf.setBounds(150, 340, 120, 20);
-        panel2.add(sssdeducttf);
-        
-        phdeducttf = new JTextField();
-        phdeducttf.setBounds(150, 365, 120, 20);
-        panel2.add(phdeducttf);
-        
-        pgdeducttf = new JTextField();
-        pgdeducttf.setBounds(150, 390, 120, 20);
-        panel2.add(pgdeducttf);
-        
-        taxdeducttf = new JTextField();
-        taxdeducttf.setBounds(150, 415, 120, 20);
-        panel2.add(taxdeducttf);
-        
-        totaldeducttf = new JTextField();
-        totaldeducttf.setBounds(150, 440, 120, 20);
-        panel2.add(totaldeducttf);
-        
-        nettf = new JTextField();
-        nettf.setBounds(150, 490, 120, 20);
-        panel2.add(nettf);
 
         
         frame.setVisible(true);
         
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==returnbtn){
+        if(e.getSource()==savebtn){
+            String csvfile = "MotorPH Employee Data.csv";
+            try {
+                CSVReader csvreader = new CSVReader(new FileReader(csvfile));
+                
+                boolean employeeNumFound = false;
+                
+                String[] updated=new String[19];
+                String empnum = enumtf.getText();       
+                        
+                String line[];
+                while((line=csvreader.readNext())!=null){
+                    if(line[0].equals(enumtf.getText())){
+                        updated[0]=enumtf.getText();
+                        updated[1]=lnametf.getText();
+                        updated[2]=fnametf.getText();
+                        updated[3]=bdaytf.getText();
+                        updated[4]=addtf.getText();
+                        updated[5]=phonenumtf.getText();
+                        updated[6]=sssnumtf.getText();
+                        updated[7]=phnumtf.getText();
+                        updated[8]=tinnumtf.getText();
+                        updated[9]=pgnumtf.getText();
+                        updated[10]=statustf.getText();
+                        updated[11]=postf.getText();
+                        updated[12]=suptf.getText();
+                        updated[13]=basictf.getText();
+                        updated[14]=ricetf.getText();
+                        updated[15]=phonetf.getText();
+                        updated[16]=clothtf.getText();
+                        updated[17]=semratetf.getText();
+                        updated[18]=hratetf.getText();
+                        
+                        employeeNumFound = true;
+                        break;
+                    }
+                }
+                csvreader.close();
+                
+                if(employeeNumFound){
+                    CSVWriter csvwriter = new CSVWriter(new FileWriter(csvfile+".tmp"));
+                    csvreader = new CSVReader(new FileReader(csvfile));
+                    
+                    while((line=csvreader.readNext())!=null){
+                        if(line[0].equals(enumtf.getText())){
+                            System.arraycopy(updated, 0, line, 0, 19);
+                        }
+                        csvwriter.writeNext(line);
+                    }
+                    
+                    csvreader.close();
+                    csvwriter.close();
+                    
+                    new File(csvfile).delete();
+                    new File(csvfile+".tmp").renameTo(new File(csvfile));
+                    
+                    JOptionPane.showMessageDialog(null, "Records are updated.");
+                    new Options();
+                    frame.dispose();
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(UpdateFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(UpdateFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else if(e.getSource()==returnbtn){
             new Options();
             frame.dispose();
         }
-        else if(e.getSource()==updatebtn){
-            
-            new UpdateFrame();
-            frame.dispose();
-        }
-       
     }
-
-   
-   
+    
+    
 }

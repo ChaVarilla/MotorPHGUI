@@ -12,6 +12,9 @@ package com.mycompany.motorphgui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Options implements ActionListener {
@@ -82,8 +85,13 @@ public class Options implements ActionListener {
         }
         
         else if(e.getSource()==viewAllbtn){
-            new ViewAllFrame();
-            frame.dispose();
+            try {
+                new ViewAllFrame();
+                frame.dispose();
+            } catch (IOException ex) {
+                Logger.getLogger(Options.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         
         else if(e.getSource()==exitbtn){
