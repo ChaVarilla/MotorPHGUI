@@ -55,169 +55,169 @@ public class UpdateFrame implements ActionListener{
         frame.add(panel1);
         
         savebtn = new JButton("Save Changes");
-        savebtn.setBounds(10,10,150,30);
+        savebtn.setBounds(340,470,150,30);
         panel1.add(savebtn);
         savebtn.addActionListener(this);
         
         returnbtn = new JButton("Return to Options");
-        returnbtn.setBounds(345,10,150,30);
+        returnbtn.setBounds(340,510,150,30);
         panel1.add(returnbtn);
         returnbtn.addActionListener(this);
         
         
          
         enumlbl = new JLabel("Employee Number:");
-        enumlbl.setBounds(10,75 , 120, 20);
+        enumlbl.setBounds(10,10 , 120, 20);
         panel1.add(enumlbl);
         
         lnamelbl = new JLabel("Last Name:");
-        lnamelbl.setBounds(10,100 , 120, 20);
+        lnamelbl.setBounds(10,35 , 120, 20);
         panel1.add(lnamelbl);
         
         fnamelbl = new JLabel("First Name:");
-        fnamelbl.setBounds(10,125 , 120, 20);
+        fnamelbl.setBounds(10,60 , 120, 20);
         panel1.add(fnamelbl);
         
         bdaylbl = new JLabel("Birthday:");
-        bdaylbl.setBounds(10,150 , 120, 20);
+        bdaylbl.setBounds(10,85 , 120, 20);
         panel1.add(bdaylbl);
         
         addlbl = new JLabel("Address:");
-        addlbl.setBounds(10,175 , 120, 20);
+        addlbl.setBounds(10,110 , 120, 20);
         panel1.add(addlbl);
         
         phonenumlbl = new JLabel("Phone Number:");
-        phonenumlbl.setBounds(10,200 , 120, 20);
+        phonenumlbl.setBounds(10,135 , 120, 20);
         panel1.add(phonenumlbl);
         
         sssnumlbl = new JLabel("SSS Number:");
-        sssnumlbl.setBounds(10,225 , 120, 20);
+        sssnumlbl.setBounds(10,160 , 120, 20);
         panel1.add(sssnumlbl);
         
         phnumlbl = new JLabel("Philhealth Number:");
-        phnumlbl.setBounds(10,250 , 120, 20);
+        phnumlbl.setBounds(10,185 , 120, 20);
         panel1.add(phnumlbl);
         
         tinnumlbl = new JLabel("TIN:");
-        tinnumlbl.setBounds(10,275 , 120, 20);
+        tinnumlbl.setBounds(10,210 , 120, 20);
         panel1.add(tinnumlbl);
         
         pgnumlbl = new JLabel("PAGIBIG Number:");
-        pgnumlbl.setBounds(10,300 , 120, 20);
+        pgnumlbl.setBounds(10,235 , 120, 20);
         panel1.add(pgnumlbl);
         
         statuslbl = new JLabel("Status:");
-        statuslbl.setBounds(10,325 , 120, 20);
+        statuslbl.setBounds(10,260 , 120, 20);
         panel1.add(statuslbl);
         
         poslbl = new JLabel("Position:");
-        poslbl.setBounds(10,350 , 120, 20);
+        poslbl.setBounds(10,285 , 120, 20);
         panel1.add(poslbl);
         
         suplbl = new JLabel("Supervisor:");
-        suplbl.setBounds(10,375 , 120, 20);
+        suplbl.setBounds(10,310 , 120, 20);
         panel1.add(suplbl);
         
         basiclbl = new JLabel("Basic Salary:");
-        basiclbl.setBounds(10,400 , 120, 20);
+        basiclbl.setBounds(10,335 , 120, 20);
         panel1.add(basiclbl);
         
         ricelbl = new JLabel("Rice Allowance:");
-        ricelbl.setBounds(10,425 , 120, 20);
+        ricelbl.setBounds(10,360 , 120, 20);
         panel1.add(ricelbl);
         
         phonelbl = new JLabel("Phone Allowance:");
-        phonelbl.setBounds(10,450 , 120, 20);
+        phonelbl.setBounds(10,385 , 120, 20);
         panel1.add(phonelbl);
         
         clothlbl = new JLabel("Clothing Allowance:");
-        clothlbl.setBounds(10,475 , 120, 20);
+        clothlbl.setBounds(10,410 , 120, 20);
         panel1.add(clothlbl);
         
         semratelbl = new JLabel("Semi-Monthly Rate:");
-        semratelbl.setBounds(10,500 , 120, 20);
+        semratelbl.setBounds(10,435 , 120, 20);
         panel1.add(semratelbl);
         
         hratelbl = new JLabel("Hourly Rate:");
-        hratelbl.setBounds(10,525 , 120, 20);
+        hratelbl.setBounds(10,460 , 120, 20);
         panel1.add(hratelbl);
 
         
         
         enumtf = new JTextField();
-        enumtf.setBounds(130, 75, 150, 20);
+        enumtf.setBounds(130, 10, 150, 20);
         panel1.add(enumtf);
         
         lnametf = new JTextField();
-        lnametf.setBounds(130, 100, 150, 20);
+        lnametf.setBounds(130, 35, 150, 20);
         panel1.add(lnametf);
         
         fnametf = new JTextField();
-        fnametf.setBounds(130, 125, 150, 20);
+        fnametf.setBounds(130, 60, 150, 20);
         panel1.add(fnametf);
         
         bdaytf = new JTextField();
-        bdaytf.setBounds(130, 150, 150, 20);
+        bdaytf.setBounds(130, 85, 150, 20);
         panel1.add(bdaytf);
         
         addtf = new JTextField();
-        addtf.setBounds(130, 175, 360, 20);
+        addtf.setBounds(130, 110, 360, 20);
         panel1.add(addtf);
         
         phonenumtf = new JTextField();
-        phonenumtf.setBounds(130, 200, 150, 20);
+        phonenumtf.setBounds(130, 135, 150, 20);
         panel1.add(phonenumtf);
         
         sssnumtf = new JTextField();
-        sssnumtf.setBounds(130, 225, 150, 20);
+        sssnumtf.setBounds(130, 160, 150, 20);
         panel1.add(sssnumtf);
         
         phnumtf = new JTextField();
-        phnumtf.setBounds(130, 250, 150, 20);
+        phnumtf.setBounds(130, 185, 150, 20);
         panel1.add(phnumtf);
         
         tinnumtf = new JTextField();
-        tinnumtf.setBounds(130, 275, 150, 20);
+        tinnumtf.setBounds(130, 210, 150, 20);
         panel1.add(tinnumtf);
         
         pgnumtf = new JTextField();
-        pgnumtf.setBounds(130, 300, 150, 20);
+        pgnumtf.setBounds(130, 235, 150, 20);
         panel1.add(pgnumtf);
         
         statustf = new JTextField();
-        statustf.setBounds(130, 325, 150, 20);
+        statustf.setBounds(130, 260, 150, 20);
         panel1.add(statustf);
         
         postf = new JTextField();
-        postf.setBounds(130, 350, 150, 20);
+        postf.setBounds(130, 285, 150, 20);
         panel1.add(postf);
         
         suptf = new JTextField();
-        suptf.setBounds(130, 375, 150, 20);
+        suptf.setBounds(130, 310, 150, 20);
         panel1.add(suptf);
         
         basictf = new JTextField();
-        basictf.setBounds(130, 400, 150, 20);
+        basictf.setBounds(130, 335, 150, 20);
         panel1.add(basictf);
         
         ricetf = new JTextField();
-        ricetf.setBounds(130,425 , 150, 20);
+        ricetf.setBounds(130,360, 150, 20);
         panel1.add(ricetf);
         
         phonetf = new JTextField();
-        phonetf.setBounds(130,450 , 150, 20);
+        phonetf.setBounds(130,385 , 150, 20);
         panel1.add(phonetf);
         
         clothtf = new JTextField();
-        clothtf.setBounds(130,475 , 150, 20);
+        clothtf.setBounds(130,410 , 150, 20);
         panel1.add(clothtf);
         
         semratetf = new JTextField();
-        semratetf.setBounds(130,500 , 150, 20);
+        semratetf.setBounds(130,435 , 150, 20);
         panel1.add(semratetf);
         
         hratetf = new JTextField();
-        hratetf.setBounds(130,525 , 150, 20);
+        hratetf.setBounds(130,460 , 150, 20);
         panel1.add(hratetf);
 
         

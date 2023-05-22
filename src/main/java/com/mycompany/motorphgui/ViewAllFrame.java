@@ -31,7 +31,7 @@ import javax.swing.event.ListSelectionListener;
 public class ViewAllFrame implements ActionListener {
     
     JFrame frame,frame2;
-    JPanel panel2;
+    JPanel panel1,panel2;
     JTable table;
     String[] collbl;
     JScrollPane scrollpane;
@@ -88,124 +88,125 @@ public class ViewAllFrame implements ActionListener {
         frame2.setResizable(false);
         frame2.setLayout(null);  
         
+        panel1 = new JPanel();
+        panel1.setLayout(null);
+        panel1.setBounds(0, 0, 800,20 );
+        frame.add(panel1);
         
         
         panel2 = new JPanel();
         panel2.setLayout(null);
-        panel2.setBounds(0, 0, 800,180 );
+        panel2.setBounds(0, 420, 800,180 );
         frame.add(panel2);
 
   
         vmbtn = new JButton("View Details and Salary");
-        vmbtn.setBounds(10, 10, 180, 30);
+        vmbtn.setBounds(590, 10, 180, 30);
         panel2.add(vmbtn);
         vmbtn.addActionListener(this);
       
-        deletebtn = new JButton("Delete Row");
-        deletebtn.setBounds(10, 50, 180, 30);
+        deletebtn = new JButton("Delete Selected Row");
+        deletebtn.setBounds(590, 50, 180, 30);
         panel2.add(deletebtn);
         deletebtn.addActionListener(this);
         
         returnbtn = new JButton("Return to Options");
-        returnbtn.setBounds(625,10,150,30);
+        returnbtn.setBounds(590,95,180,30);
         panel2.add(returnbtn);
         returnbtn.addActionListener(this);
-        
-        
-        
+         
         
         collbl =new String[]{"Employee Number","Last Name","First Name","SSS Number","Philhealth Number",
                 "TIN","PAGIBIG Number"};   
         rowdata = getRowData();
-        
-        
+         
         
         table = new JTable(rowdata,collbl);
        
 
         scrollpane = new JScrollPane(table);
-        scrollpane.setBounds(10, 180, 765, 350);
+        scrollpane.setBounds(13, 30, 760, 390);
         frame.getContentPane().add(scrollpane);
         
         selectdatelbl = new JLabel("Select Date for Salary Computation");
-        selectdatelbl.setBounds(300, 0,300 , 20);
+        selectdatelbl.setBounds(100, 0,300 , 20);
         panel2.add(selectdatelbl);
        
         startlbl = new JLabel("Start Date:");
-        startlbl.setBounds(250, 30,80 , 20);
+        startlbl.setBounds(50, 30,80 , 20);
         panel2.add(startlbl);
         
         yr1lbl = new JLabel("Year:");
-        yr1lbl.setBounds(200, 55, 80, 20);
+        yr1lbl.setBounds(13, 55, 80, 20);
         panel2.add(yr1lbl);    
         
         m1lbl = new JLabel("Month:");
-        m1lbl.setBounds(200, 80, 80, 20);
+        m1lbl.setBounds(13, 80, 80, 20);
         panel2.add(m1lbl);
         
         d1lbl = new JLabel("Day:");
-        d1lbl.setBounds(200, 105, 80, 20);
+        d1lbl.setBounds(13, 105, 80, 20);
         panel2.add(d1lbl);
         
         
         String[] yr = {"None","2022"};
         year1cb = new JComboBox(yr);
-        year1cb.setBounds(270, 55, 80, 20);
+        year1cb.setBounds(70, 55, 80, 20);
         panel2.add(year1cb);
         
         
         String[] m = {"None","09","10","11","12"};
         month1cb = new JComboBox(m);
-        month1cb.setBounds(270, 80, 80, 20);
+        month1cb.setBounds(70, 80, 80, 20);
         panel2.add(month1cb);   
         
         String[] d = {"None","01","02","03","04","05","06","07","08","09","10","11","12","13","14","15",
                        "16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
         
         day1cb = new JComboBox(d);
-        day1cb.setBounds(270, 105, 80, 20);
+        day1cb.setBounds(70, 105, 80, 20);
         panel2.add(day1cb);
        
         
         endlbl = new JLabel("End Date:");
-        endlbl.setBounds(500, 30,80 , 20);
+        endlbl.setBounds(230, 30,80 , 20);
         panel2.add(endlbl);
         
         yr2lbl = new JLabel("Year:");
-        yr2lbl.setBounds(450, 55, 80, 20);
+        yr2lbl.setBounds(200, 55, 80, 20);
         panel2.add(yr2lbl);       
         
         
         m2lbl = new JLabel("Month:");
-        m2lbl.setBounds(450, 80, 80, 20);
+        m2lbl.setBounds(200, 80, 80, 20);
         panel2.add(m2lbl);
         
         
         d2lbl = new JLabel("Day:");
-        d2lbl.setBounds(450, 105, 80, 20);
+        d2lbl.setBounds(200, 105, 80, 20);
         panel2.add(d2lbl);
         
         selectRowlbl = new JLabel("Select Employee in Table");
-        selectRowlbl.setBounds(320,150,300,20);
-        panel2.add(selectRowlbl);
+        selectRowlbl.setBounds(320,0,300,20);
+        panel1.add(selectRowlbl);
         
        
         year2cb = new JComboBox(yr);
-        year2cb.setBounds(520, 55, 80, 20);
+        year2cb.setBounds(260, 55, 80, 20);
         panel2.add(year2cb);
         
         
 
         
         month2cb = new JComboBox(m);
-        month2cb.setBounds(520, 80, 80, 20);
+        month2cb.setBounds(260, 80, 80, 20);
         panel2.add(month2cb);   
         
   
 
         
         day2cb = new JComboBox(d);
-        day2cb.setBounds(520, 105, 80, 20);
+        day2cb.setBounds(260, 105, 80, 20);
         panel2.add(day2cb);
         
       
@@ -233,7 +234,31 @@ public class ViewAllFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "No selected row.");
                 
             }
-            else if(!table.getSelectionModel().isSelectionEmpty()){
+            
+            boolean testdate=true;
+            
+            if( month1cb.getSelectedItem().equals("None") |month2cb.getSelectedItem().equals("None")|
+                year1cb.getSelectedItem().equals(selectedEmpnum)| year2cb.getSelectedItem().equals("None")|
+                day1cb.getSelectedItem().equals("None")|day2cb.getSelectedItem().equals("None")){
+                
+                JOptionPane.showMessageDialog(null, "Date is invalid. Try Again.", "", JOptionPane.ERROR_MESSAGE);
+                
+                month1cb.setSelectedItem(0);
+                day1cb.setSelectedIndex(0);
+                year1cb.setSelectedIndex(0);
+                month1cb.setSelectedIndex(0);
+                day2cb.setSelectedIndex(0);
+                year2cb.setSelectedIndex(0);
+                
+                testdate = false;
+            }
+            
+            
+                    
+                    
+            
+            
+            else if(!table.getSelectionModel().isSelectionEmpty() & testdate==true){
                 
                 String m = String.valueOf(selectedEmpnum);
                 int n = Integer.parseInt(m)-10001;
@@ -314,13 +339,6 @@ public class ViewAllFrame implements ActionListener {
                     } catch (IOException ex) {
                         Logger.getLogger(ViewAllFrame.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (ParseException ex) {  
-                        JOptionPane.showMessageDialog(null, "Date is invalid. Try Again.", "", JOptionPane.ERROR_MESSAGE);
-                        month1cb.setSelectedItem(0);
-                        day1cb.setSelectedIndex(0);
-                        year1cb.setSelectedIndex(0);
-                        month1cb.setSelectedIndex(0);
-                        day2cb.setSelectedIndex(0);
-                        year2cb.setSelectedIndex(0);
                         Logger.getLogger(ViewAllFrame.class.getName()).log(Level.SEVERE, null, ex);
                     } 
             }

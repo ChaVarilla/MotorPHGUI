@@ -38,13 +38,11 @@ public class Payroll implements ActionListener {
         panel1 = new JPanel();
         panel1.setLayout(null);
         panel1.setBounds(0, 0,200 , 600);
-        panel1.setBackground(Color.PINK);
         frame.add(panel1);
         
         panel2 = new JPanel();
         panel2.setLayout(null);
         panel2.setBounds(200, 0,600 , 600);
-        panel2.setBackground(Color.LIGHT_GRAY);
         frame.add(panel2);
         
         

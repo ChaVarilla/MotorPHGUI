@@ -37,8 +37,12 @@ public class EmployeeInfo implements ActionListener {
         panel = new JPanel();
         panel.setBounds(0, 0, 800, 60);
         panel.setLayout(null);
-        panel.setBackground(Color.pink);
         frame.add(panel);
+        
+        panel2 = new JPanel();
+        panel2.setBounds(0, 10, 800, 560);
+        panel2.setLayout(null);
+        frame.add(panel2);
        
         
         empnumlbl = new JLabel("Enter Employee Number");
@@ -51,24 +55,20 @@ public class EmployeeInfo implements ActionListener {
         panel.add(empnumtf);
         
         detailsbtn = new JButton("Show Employee Information");
-        detailsbtn.setBounds(350, 10, 200, 30);
+        detailsbtn.setBounds(575, 10, 200, 30);
         panel.add(detailsbtn);
         detailsbtn.addActionListener(this);
         
         returnbtn = new JButton("Return to Options");
-        returnbtn.setBounds(600, 10, 150, 30);
+        returnbtn.setBounds(625, 500, 150, 30);
         returnbtn.addActionListener(this);
-        panel.add(returnbtn);
+        panel2.add(returnbtn);
         
         
-        panel2 = new JPanel();
-        panel2.setBounds(0, 10, 800, 560);
-        panel2.setLayout(null);
-        panel2.setBackground(Color.LIGHT_GRAY);
-        frame.add(panel2);
+       
         
         detailsta = new JTextArea();
-        detailsta.setBounds(10, 60, 765, 480);
+        detailsta.setBounds(10, 60, 765, 430);
         panel2.add(detailsta);
         
         

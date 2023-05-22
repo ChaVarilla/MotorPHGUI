@@ -8,9 +8,15 @@ package com.mycompany.motorphgui;
  *
  * @author Cha
  */
+import com.opencsv.CSVReader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class LogIn implements ActionListener{
@@ -36,7 +42,7 @@ public class LogIn implements ActionListener{
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
         frame.add(panel);
-        panel.setBackground(Color.pink);
+        
         
         
         imagelbl = new JLabel();
@@ -69,20 +75,53 @@ public class LogIn implements ActionListener{
    
    
     public void actionPerformed(ActionEvent e) {
-        if(usertf.getText().equals("Cha") && pwtf.getText().equals("1234")){
-            new Options(); 
-            frame.dispose();
+        
+        try {
+            CSVReader csvreader = new CSVReader(new FileReader("Credentials.csv"));
             
+            String[] line;
+            
+            boolean trial = false;
+            
+            while((line=csvreader.readNext())!=null){
+                if(line[0].equals(usertf.getText())){
+                    trial = true;
+                    break;    
+                }
+                
+            }
+            csvreader.close();
+            
+            if(trial==true){
+                if(line[1].equals(pwtf.getText())){
+                        new Options(); 
+                        frame.dispose();
+                    } 
+                else{
+                    JOptionPane.showMessageDialog(null, 
+                        "Invalid Password. Please try again or contact our beautiful IT Support Cha", 
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
+                        new MotorPHGUI();
+                        usertf.setText("");
+                        pwtf.setText("");
+                }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, 
+                        "Invalid Username. Please try again or contact our beautiful IT Support Cha", 
+                        "",
+                        JOptionPane.ERROR_MESSAGE);
+                        new MotorPHGUI();
+                        usertf.setText("");
+                        pwtf.setText("");
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else{
-            JOptionPane.showMessageDialog(null, 
-                    "Invalid Username or Password. Please try again or contact our beautiful IT Support Cha", 
-                    "",
-                    JOptionPane.ERROR_MESSAGE);
-                    new MotorPHGUI();
-                    usertf.setText("");
-                    pwtf.setText("");
-
-        }
+      
     }
 }

@@ -118,76 +118,76 @@ public class LeaveApplicationFrame implements ActionListener {
         panel1.add(daycb);
         
         startlbl = new JLabel("Start Date of Leave:");
-        startlbl.setBounds(350, 60, 120, 20);
+        startlbl.setBounds(350, 30, 120, 20);
         panel1.add(startlbl);
         
         endlbl = new JLabel("End Date of Leave:");
-        endlbl.setBounds(600, 60, 120, 20);
+        endlbl.setBounds(600, 30, 120, 20);
         panel1.add(endlbl);
         
-        
+       
         yr1lbl = new JLabel("Year:");
-        yr1lbl.setBounds(350, 90, 50, 20);
+        yr1lbl.setBounds(350, 60, 50, 20);
         panel1.add(yr1lbl);
         
         yr2lbl = new JLabel("Year:");
-        yr2lbl.setBounds(600, 90, 50, 20);
+        yr2lbl.setBounds(600, 60, 50, 20);
         panel1.add(yr2lbl);
         
         m1lbl = new JLabel("Month:");
-        m1lbl.setBounds(350, 115, 50, 20);
+        m1lbl.setBounds(350, 90, 50, 20);
         panel1.add(m1lbl);
         
         m2lbl = new JLabel("Month:");
-        m2lbl.setBounds(600, 115, 50, 20);
+        m2lbl.setBounds(600, 90, 50, 20);
         panel1.add(m2lbl);
         
         d1lbl = new JLabel("Date:");
-        d1lbl.setBounds(350, 140, 50, 20);
+        d1lbl.setBounds(350, 120, 50, 20);
         panel1.add(d1lbl);
         
         d2lbl = new JLabel("Date:");
-        d2lbl.setBounds(600, 140, 50, 20);
+        d2lbl.setBounds(600, 120, 50, 20);
         panel1.add(d2lbl);
         
         String[] yr = {"2023","2024"};
         y1cb = new JComboBox(yr);
-        y1cb.setBounds(400, 90, 100, 20);
+        y1cb.setBounds(400, 60, 100, 20);
         panel1.add(y1cb);
         
         y2cb = new JComboBox(yr);
-        y2cb.setBounds(650, 90, 100, 20);
+        y2cb.setBounds(650, 60, 100, 20);
         panel1.add(y2cb);
         
         String[] m = {"January","February","March","April","May","June","July","August",
                       "September","October","November","December"};
         
         m1cb = new JComboBox(m);
-        m1cb.setBounds(400, 115, 100, 20);
+        m1cb.setBounds(400, 90, 100, 20);
         panel1.add(m1cb);
         
         m2cb = new JComboBox(m);
-        m2cb.setBounds(650, 115, 100, 20);
+        m2cb.setBounds(650, 90, 100, 20);
         panel1.add(m2cb);
         
         String[] d = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15",
                        "16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"};
         
         d1cb = new JComboBox(d);
-        d1cb.setBounds(400, 140, 100, 20);
+        d1cb.setBounds(400, 120, 100, 20);
         panel1.add(d1cb);
         
         d2cb = new JComboBox(d);
-        d2cb.setBounds(650, 140, 100, 20);
+        d2cb.setBounds(650, 120, 100, 20);
         panel1.add(d2cb);
         
         returnbtn = new JButton("Return to Options");
-        returnbtn.setBounds(20,200, 150, 30);
+        returnbtn.setBounds(600,210, 150, 30);
         panel1.add(returnbtn);
         returnbtn.addActionListener(this);
         
         applybtn = new JButton("File Leave");
-        applybtn.setBounds(600, 200, 150, 30);
+        applybtn.setBounds(600, 170, 150, 30);
         panel1.add(applybtn);
         applybtn.addActionListener(this);
         

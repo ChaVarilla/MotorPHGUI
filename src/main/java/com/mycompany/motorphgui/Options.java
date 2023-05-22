@@ -37,7 +37,6 @@ public class Options implements ActionListener {
         panel= new JPanel();
         panel.setLayout(null);
         panel.setBounds(0, 0, 395, 280);
-        panel.setBackground(Color.pink);
         frame.add(panel);
        
         
