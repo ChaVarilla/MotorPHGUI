@@ -228,6 +228,7 @@ public class LeaveApplicationFrame implements ActionListener {
                             remainsl = line[3];
                         }
                         else if(leavecb.getSelectedItem().equals("Vacation Leave")){
+                            
                             int vl=Integer.parseInt(line[4])-Integer.parseInt(String.valueOf(daycb.getSelectedItem()));
                             line[4] =String.valueOf(vl);
                             remainvl =line[4];
@@ -237,6 +238,7 @@ public class LeaveApplicationFrame implements ActionListener {
                             line[5]=String.valueOf(el);
                             remainel = line[5];
                         }
+                        
                     }
                     csvwriter.writeNext(line);
                 }

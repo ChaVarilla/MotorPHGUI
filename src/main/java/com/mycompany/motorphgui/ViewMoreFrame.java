@@ -9,6 +9,7 @@ package com.mycompany.motorphgui;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static java.lang.String.format;
 import javax.swing.*;
 
 
@@ -32,10 +33,11 @@ public class ViewMoreFrame implements ActionListener {
            hratetf,salperiodtf,salearnedtf,rice1tf,phone1tf,cloth1tf,grosstf,
            sssdeducttf,phdeducttf,pgdeducttf,taxdeducttf,totaldeducttf,nettf;
     
-    
-  
-    
-    ViewMoreFrame(){
+    int n;
+    EditData edata = new EditData();
+
+    ViewMoreFrame(Data data){
+        
               
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -338,9 +340,10 @@ public class ViewMoreFrame implements ActionListener {
         nettf.setBounds(150, 450, 120, 20);
         panel2.add(nettf);
 
-        
+        n=data.getSelectedRow();
         frame.setVisible(true);
         
+        edata.seteNum(data.getSelectedRow());
 
     }
 
@@ -352,7 +355,11 @@ public class ViewMoreFrame implements ActionListener {
         }
         else if(e.getSource()==updatebtn){
             
-            new UpdateFrame();
+            UpdateFrame uf =new UpdateFrame(edata);
+            
+           
+            
+            
             frame.dispose();
         }
        

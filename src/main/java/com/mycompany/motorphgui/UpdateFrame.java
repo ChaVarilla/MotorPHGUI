@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import static java.lang.String.format;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -30,8 +31,7 @@ public class UpdateFrame implements ActionListener{
     JFrame frame;
     JPanel panel1,panel2;
     JButton savebtn,returnbtn;
-    
-    
+
     JLabel enumlbl,lnamelbl,fnamelbl,bdaylbl,addlbl,phonenumlbl,sssnumlbl,phnumlbl,
            tinnumlbl,pgnumlbl,statuslbl,poslbl,suplbl,basiclbl,ricelbl,phonelbl,clothlbl,semratelbl,
            hratelbl;
@@ -39,8 +39,10 @@ public class UpdateFrame implements ActionListener{
     JTextField enumtf,lnametf,fnametf,bdaytf,addtf,phonenumtf,sssnumtf,phnumtf,
            tinnumtf,pgnumtf,statustf,postf,suptf,basictf,ricetf,phonetf,clothtf,semratetf,
            hratetf;
+    int n;
+    Data data = new Data();
     
-    UpdateFrame(){
+    UpdateFrame(EditData edata){
         
         frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -219,7 +221,30 @@ public class UpdateFrame implements ActionListener{
         hratetf = new JTextField();
         hratetf.setBounds(130,460 , 150, 20);
         panel1.add(hratetf);
-
+        
+        n = edata.geteNum();
+        
+        
+        enumtf.setText(String.valueOf(data.getempNum()[n]));
+        fnametf.setText(String.valueOf(data.getfirstName()[n]));
+        lnametf.setText(String.valueOf(data.getlastName()[n]));
+        addtf.setText(String.valueOf(data.getaddress()[n]));
+        bdaytf.setText(String.valueOf(data.getbirthday()[n]));
+        phonenumtf.setText(String.valueOf(data.getphoneNum()[n]));
+        sssnumtf.setText(String.valueOf(data.getsssNum()[n]));
+        phnumtf.setText(String.valueOf(data.getphNum()[n]));
+        tinnumtf.setText(String.valueOf(data.gettinNum()[n]));
+        pgnumtf.setText(String.valueOf(data.getpgbNum()[n]));
+        statustf.setText(String.valueOf(data.getstatus()[n]));
+        postf.setText(String.valueOf(data.getposition()[n]));
+        suptf.setText(String.valueOf(data.getsup()[n]));
+        basictf.setText(String.valueOf(data.getsal()[n]));
+        ricetf.setText(String.valueOf(data.getrice()[n]));
+        phonetf.setText(String.valueOf(data.getphone()[n]));
+        clothtf.setText(String.valueOf(data.getcloth()[n]));
+        semratetf.setText(String.valueOf(format("%.2f",data.getsal()[n]/2)));
+        hratetf.setText(String.valueOf(format("%.2f",data.getsal()[n]/(22*8))));
+        
         
         frame.setVisible(true);
         
@@ -233,9 +258,8 @@ public class UpdateFrame implements ActionListener{
                 CSVReader csvreader = new CSVReader(new FileReader(csvfile));
                 
                 boolean employeeNumFound = false;
-                
+                           
                 String[] updated=new String[19];
-                String empnum = enumtf.getText();       
                         
                 String line[];
                 while((line=csvreader.readNext())!=null){
@@ -262,8 +286,10 @@ public class UpdateFrame implements ActionListener{
                         
                         employeeNumFound = true;
                         break;
+                        
                     }
                 }
+                
                 csvreader.close();
                 
                 if(employeeNumFound){
@@ -287,13 +313,7 @@ public class UpdateFrame implements ActionListener{
                     new Options();
                     frame.dispose();
                 }
-                
-                
-                
-                
-                
-                
-                
+
                 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(UpdateFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -306,6 +326,5 @@ public class UpdateFrame implements ActionListener{
             frame.dispose();
         }
     }
-    
-    
+ 
 }

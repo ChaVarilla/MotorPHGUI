@@ -9,9 +9,9 @@ package com.mycompany.motorphgui;
  * @author Cha
  */
 public class Data {
+    private int selectedRow;
     
-    
-     String[] header = {"Employee #:\t\t","Last Name:\t\t","First Name:\t\t","Birthday:\t\t","Address:\t\t","Phone Number:\t",
+    String[] header = {"Employee #:\t\t","Last Name:\t\t","First Name:\t\t","Birthday:\t\t","Address:\t\t","Phone Number:\t",
                            "SSS #:\t\t","Philhealth #:\t\t","TIN #:\t\t","Pag-ibig #:\t\t","Status:\t\t","Position:\t\t",
                            "Immediate Supervisor:","Basic Salary:\t\t","Rice Subsidy:\t\t","Phone Allowance:\t",
                            "Clothing Allowance:\t", "Semi-monthly Rate:\t","Hourly Rate:\t\t"};
@@ -175,8 +175,12 @@ public class Data {
         return cloth;
     }
     
+    public void setSelectedRow(int selectedRow){
+        this.selectedRow=selectedRow;
+    }
+    public int getSelectedRow(){
+        return selectedRow;
+    }
     
-    
-   
     
 }

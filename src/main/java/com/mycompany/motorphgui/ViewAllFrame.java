@@ -38,20 +38,19 @@ public class ViewAllFrame implements ActionListener {
     Object rowdata[][];
     JButton vmbtn,returnbtn, deletebtn;
     JComboBox year1cb,month1cb,day1cb,year2cb,month2cb,day2cb;
-    int selectedRow;
+  
     Object selectedEmpnum;
     JLabel selectRowlbl, selectdatelbl, startlbl,endlbl,yr1lbl,m1lbl,d1lbl,yr2lbl,m2lbl,d2lbl;
+    int selectedRow;
     
-    Data data=new Data();
     Attendance attend = new Attendance();
     Computations compute = new Computations();
+    Data data = new Data();
     
     Object[][] getRowData() throws FileNotFoundException, IOException{
-        rowdata = new Object[25][7];
-        
+        rowdata = new Object[25][7];  
         CSVReader csvreader = new CSVReader(new FileReader("MotorPH Employee Data.csv"));
-        
-        
+
         String[] line;
         int i=0;
         while((line=csvreader.readNext())!=null){
@@ -218,10 +217,12 @@ public class ViewAllFrame implements ActionListener {
         model.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e){
-                              
+                            
                ListSelectionModel lsm = (ListSelectionModel) e.getSource();
-               selectedRow=lsm.getMinSelectionIndex(); 
+               selectedRow=lsm.getMinSelectionIndex();
+               data.setSelectedRow(selectedRow);
                selectedEmpnum=table.getValueAt(selectedRow, 0);
+
             }
         });
     }
@@ -252,17 +253,15 @@ public class ViewAllFrame implements ActionListener {
                 
                 testdate = false;
             }
-            
-            
-                    
-                    
-            
+ 
             
             else if(!table.getSelectionModel().isSelectionEmpty() & testdate==true){
-                
+               
                 String m = String.valueOf(selectedEmpnum);
                 int n = Integer.parseInt(m)-10001;
-                ViewMoreFrame vm =new ViewMoreFrame();
+                
+                ViewMoreFrame vm =new ViewMoreFrame(data);
+                
                 frame.dispose();
                 
                 try {
@@ -331,7 +330,7 @@ public class ViewAllFrame implements ActionListener {
                             break;
                         }
                     }
-                
+                    csvreader.close();
        
                
                 }   catch (FileNotFoundException ex) { 
@@ -349,13 +348,11 @@ public class ViewAllFrame implements ActionListener {
             new Options();
             frame.dispose();
             
-        }
-        
+        }   
         else if(e.getSource()==deletebtn){
             
             String empNum=String.valueOf(selectedEmpnum) ;
-            
-            
+             
             String csvfile = "MotorPH Employee Data.csv";
             
             try {
