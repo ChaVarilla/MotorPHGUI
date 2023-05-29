@@ -224,7 +224,6 @@ public class UpdateFrame implements ActionListener{
         
         n = edata.geteNum();
         
-        
         enumtf.setText(String.valueOf(data.getempNum()[n]));
         fnametf.setText(String.valueOf(data.getfirstName()[n]));
         lnametf.setText(String.valueOf(data.getlastName()[n]));
