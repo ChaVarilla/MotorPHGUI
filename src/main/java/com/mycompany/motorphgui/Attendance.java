@@ -81,8 +81,7 @@ public class Attendance {
         
         int indexStart = 0;
         for (int i =0; i< sdateArray.length;i++){     //limit of loop is the length on the elements in Array
-           Date dStart = format2.parse(sdateArray[i]);   //Parse the String time in/out and save to Date datatype and variable d1
-            
+           Date dStart = format2.parse(sdateArray[i]);   //Parse the String time in/out and save to Date datatype and variable d1   
            if (dStart.compareTo(dateIn)==0){               
                 indexStart = i;                                     
             }                                           
